@@ -1,37 +1,32 @@
-import type {ComponentType, ReactElement, ReactNode} from "react";
+import type { ComponentType, ReactElement, ReactNode } from "react"
 
 type Provider = {
-    add<T>(provider: ComponentType<T>, props?: Omit<T, "children">): Provider
-    // (props: { children: ReactNode }): ReactElement
-    providers: Array<[ComponentType<unknown>, unknown]>
+  add<T>(provider: ComponentType<T>, props?: Omit<T, "children">): Provider
+  // (props: { children: ReactNode }): ReactElement
+  providers: Array<[ComponentType<unknown>, unknown]>
 }
 
 export function ProviderStack({
-                                  children,
-                                  providers: currentProviders,
-                              }: {
-    children: ReactNode
-    providers: Array<[ComponentType<unknown>, unknown]>
+  children,
+  providers: currentProviders,
+}: {
+  children: ReactNode
+  providers: Array<[ComponentType<unknown>, unknown]>
 }): ReactElement {
-    const provider = currentProviders
-        ?.reduceRight((cur, [Provider, props]) => {
-            return <Provider {...props}>{cur}</Provider>
-        }, <>{children}</>)
+  const provider = currentProviders?.reduceRight((cur, [Provider, props]) => {
+    return <Provider {...props}>{cur}</Provider>
+  }, <>{children}</>)
 
-    return <>{provider}</>
+  return <>{provider}</>
 }
 
 export function providers(
-    currentProviders?: Array<[ComponentType<unknown>, unknown]>
+  currentProviders?: Array<[ComponentType<unknown>, unknown]>
 ): Provider {
-    return {
-        add: function <T>(
-            provider: ComponentType<T>,
-            props?: Omit<T, "children">
-        ) {
-            return providers([...(currentProviders ?? []), [provider, props]])
-        },
-        providers: currentProviders ?? [],
-    }
+  return {
+    add: function <T>(provider: ComponentType<T>, props?: Omit<T, "children">) {
+      return providers([...(currentProviders ?? []), [provider, props]])
+    },
+    providers: currentProviders ?? [],
+  }
 }
-
