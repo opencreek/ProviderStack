@@ -25,6 +25,7 @@ export function providers(
 ): Provider {
   return {
     add: function <T>(provider: ComponentType<T>, props?: Omit<T, "children">) {
+      // @ts-ignore
       return providers([...(currentProviders ?? []), [provider, props]])
     },
     providers: currentProviders ?? [],
