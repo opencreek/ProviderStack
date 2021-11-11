@@ -62,7 +62,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auto-it/npm@npm:10.32.2":
+"@auto-it/npm@npm:10.32.2, @auto-it/npm@npm:^10.32.2":
   version: 10.32.2
   resolution: "@auto-it/npm@npm:10.32.2"
   dependencies:
@@ -378,6 +378,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@opencreek/provider-stack@workspace:."
   dependencies:
+    "@auto-it/npm": ^10.32.2
     "@types/react": ^17.0.34
     "@typescript-eslint/eslint-plugin": ^5.3.1
     "@typescript-eslint/parser": ^5.3.1

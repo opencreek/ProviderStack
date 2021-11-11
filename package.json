@@ -21,6 +21,7 @@
   "repository": "https://github.com/github:opencreek/provider-stack",
   "license": "MIT",
   "devDependencies": {
+    "@auto-it/npm": "^10.32.2",
     "@types/react": "^17.0.34",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",

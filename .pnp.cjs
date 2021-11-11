@@ -35,6 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
+            ["@auto-it/npm", "npm:10.32.2"],
             ["@types/react", "npm:17.0.34"],
             ["@typescript-eslint/eslint-plugin", "virtual:6c93af12544297b6c4b2acff227bcd6b5a2ae9a28cb3dd7a76255c6ad7dcf914efde23552e61cde6f8753c44da05a643ac84c545997d46c8d66279c6c9dcd74a#npm:5.3.1"],
             ["@typescript-eslint/parser", "virtual:6c93af12544297b6c4b2acff227bcd6b5a2ae9a28cb3dd7a76255c6ad7dcf914efde23552e61cde6f8753c44da05a643ac84c545997d46c8d66279c6c9dcd74a#npm:5.3.1"],
@@ -522,6 +523,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@opencreek/provider-stack", "workspace:."],
+            ["@auto-it/npm", "npm:10.32.2"],
             ["@types/react", "npm:17.0.34"],
             ["@typescript-eslint/eslint-plugin", "virtual:6c93af12544297b6c4b2acff227bcd6b5a2ae9a28cb3dd7a76255c6ad7dcf914efde23552e61cde6f8753c44da05a643ac84c545997d46c8d66279c6c9dcd74a#npm:5.3.1"],
             ["@typescript-eslint/parser", "virtual:6c93af12544297b6c4b2acff227bcd6b5a2ae9a28cb3dd7a76255c6ad7dcf914efde23552e61cde6f8753c44da05a643ac84c545997d46c8d66279c6c9dcd74a#npm:5.3.1"],
