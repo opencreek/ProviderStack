@@ -1,4 +1,4 @@
-## Provider Stack [![npm version](https://badge.fury.io/js/@opencreek%2Fprovider-stack.svg)](https://badge.fury.io/js/@opencreek%2Fprovider-stack)
+## Provider Stack ![npm](https://img.shields.io/npm/v/@opencreek/provider-stack)
 
 Are you tired of the mountain of react providers, just lying in your app.tsx?
 This simple library solves that for you!
