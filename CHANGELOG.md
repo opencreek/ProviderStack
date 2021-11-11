@@ -1,3 +1,15 @@
+# v0.2.2 (Thu Nov 11 2021)
+
+#### 🐛 Bug Fix
+
+- :bug: Fix npm badge [#3](https://github.com/opencreek/provider-stack/pull/3) ([@reckter](https://github.com/reckter))
+
+#### Authors: 1
+
+- Hannes Güdelhöfer ([@reckter](https://github.com/reckter))
+
+---
+
 # v0.2.1 (Thu Nov 11 2021)
 
 #### 🐛 Bug Fix
