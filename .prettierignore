@@ -3,3 +3,4 @@ build/
 .pnp.loader.mjs
 .pnp.cjs
 .yarn
+CHANGELOG.md
