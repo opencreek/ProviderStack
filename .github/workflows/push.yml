@@ -9,24 +9,50 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: yarn npm audit
+      - run: npm audit
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: yarn install --immutable --immutable-cache
-      - run: yarn lint
+      - uses: actions/cache@main
+        id: cache-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@main
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-global
+      - run: npm ci
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm run lint
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: yarn install --immutable --immutable-cache
-      - run: yarn test
-      - run: yarn build
+      - uses: actions/cache@main
+        id: cache-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@main
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-global
+      - run: npm ci
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm run test
+      - run: npm run build
 
   publish-gpr:
     name: Publish Version
@@ -37,9 +63,22 @@ jobs:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
       - run: git fetch --tags
-      - run: yarn install --immutable --immutable-cache
-      - run: yarn uild
-      - run: yarn auto shipit
+      - uses: actions/cache@main
+        id: cache-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@main
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-global
+      - run: npm ci
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm run build
+      - run: npx auto shipit
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

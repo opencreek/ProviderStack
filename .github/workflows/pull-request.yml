@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: yarn auto pr-check --url https://github.com/$GITHUB_REPOSITORY
+      - run: npx auto pr-check --url https://github.com/$GITHUB_REPOSITORY
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,9 +24,22 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: yarn install --immutable --immutable-cache
-      - run: yarn build
-      - run: yarn auto shipit
+      - uses: actions/cache@main
+        id: cache-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@main
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-global
+      - run: npm ci
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm run build
+      - run: npx auto shipit
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
