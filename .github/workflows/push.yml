@@ -39,7 +39,7 @@ jobs:
       - run: git fetch --tags
       - run: yarn install --immutable --immutable-cache
       - run: yarn uild
-      - run: yarn exec auto shipit
+      - run: yarn auto shipit
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

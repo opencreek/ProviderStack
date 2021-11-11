@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: yarn exec auto pr-check --url https://github.com/$GITHUB_REPOSITORY
+      - run: yarn auto pr-check --url https://github.com/$GITHUB_REPOSITORY
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-node@main
       - run: yarn install --immutable --immutable-cache
       - run: yarn build
-      - run: yarn exec auto shipit
+      - run: yarn auto shipit
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
