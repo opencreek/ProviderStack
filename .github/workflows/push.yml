@@ -1,0 +1,45 @@
+name: On Push
+
+on: [push]
+
+jobs:
+  audit:
+    name: Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: yarn npm audit
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: yarn install --immutable --immutable-cache
+      - run: yarn lint
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: yarn install --immutable --immutable-cache
+      - run: yarn test
+      - run: yarn build
+
+  publish-gpr:
+    name: Publish Version
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    if: "contains(github.ref, 'main') && !contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: git fetch --tags
+      - run: yarn install --immutable --immutable-cache
+      - run: yarn uild
+      - run: yarn exec auto shipit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
