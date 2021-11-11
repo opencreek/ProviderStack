@@ -1,4 +1,4 @@
-## Provider Stack ![npm](https://img.shields.io/npm/v/@opencreek/provider-stack)
+## Provider Stack [![npm](https://img.shields.io/npm/v/@opencreek/provider-stack)](https://www.npmjs.com/package/@opencreek/provider-stack)
 
 Are you tired of the mountain of react providers, just lying in your app.tsx?
 This simple library solves that for you!
