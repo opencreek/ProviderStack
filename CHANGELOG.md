@@ -1,3 +1,15 @@
+# v0.3.1 (Fri Nov 12 2021)
+
+#### 🐛 Bug Fix
+
+- :bug: Fix distribution [#5](https://github.com/opencreek/provider-stack/pull/5) ([@reckter](https://github.com/reckter))
+
+#### Authors: 1
+
+- Hannes Güdelhöfer ([@reckter](https://github.com/reckter))
+
+---
+
 # v0.3.0 (Thu Nov 11 2021)
 
 #### 🚀 Enhancement
