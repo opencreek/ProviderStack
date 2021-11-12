@@ -2,7 +2,7 @@
     "name": "@opencreek/provider-stack",
     "version": "0.3.0",
     "description": "",
-    "main": "build/index.js",
+    "main": "build/index.jsx",
     "files": [
         "build/**",
         "src/**"
