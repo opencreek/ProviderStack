@@ -1,4 +1,5 @@
 import type { ComponentType, ReactElement, ReactNode } from "react"
+import React from "react"
 
 /**
  * Represents a Stack of provider
